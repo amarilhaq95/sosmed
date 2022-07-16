@@ -1,0 +1,14 @@
+#container-userpage .list {
+    /* width: 100%; */
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#container-userpage .cont-list {
+    /* width: 100%; */
+    background-color: aquamarine;
+}
