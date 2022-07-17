@@ -6,6 +6,7 @@ export const API = {
   POST: "posts",
   ALBUM: "albums",
   PHOTO: "photos",
+  COMMENT: "comments",
 };
 
 export const socialMediaApi = createApi({
@@ -20,8 +21,20 @@ export const socialMediaApi = createApi({
     getPostAndAlbum: builder.query({
       query: ({ type, userId }) => `${API[type]}?userId=${userId}`,
     }),
+    getComment: builder.query({
+      query: ({ type, postId }) => `${API[type]}?postId=${postId}`,
+    }),
     getPhoto: builder.query({
       query: ({ albumId }) => `${API.PHOTO}?albumId=${albumId}`,
+    }),
+    deleteComment: builder.mutation({
+      query: ({ type, commentId }) => ({
+        url: `${API[type]}/${commentId}`,
+        method: 'DELETE',
+      }),
+      // Invalidates the tag for this Post `id`, as well as the `LIST` tag,
+      // causing the `listPosts` query to re-fetch if a component is subscribed to the query.
+      invalidatesTags: [{ type: "Post", id: "LIST" }],
     }),
     addPostAndAlbum: builder.mutation({
       query: ({ type, body }) => ({

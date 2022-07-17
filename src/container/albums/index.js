@@ -9,7 +9,7 @@ export default function Album() {
     const album = useQuery?.useGetPostAndAlbumQuery({type : "ALBUM", userId: user?.id})?.data;
 
     return (
-      <div id="container-userpage">
+      <div id="container-albumpage">
         {album?.map((user) => {
           return (
             <div className="cont-list">
